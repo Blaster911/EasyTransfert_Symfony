@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div id="vantajs">
+
+</div>
+<section class="container height-content">
+  <form id="form-transfer" method="POST" action="/sendData" enctype="multipart/form-data" onsubmit="return false">
+    <div class="logo-form">
+      <img src="\img\logo.png" alt="">
+    </div>
+    <div id="translate-page">
+    <a href="/en"><img src="\img\united-kingdom.png" alt="{{ tabLang.translation_en }}"></a>
+    <a href="/fr"><img src="\img\france.png" alt="{{ tabLang.translation_fr }}"></a>
+    <a href="/it"><img src="\img\italy.png" alt="{{ tabLang.translation_it }}"></a>
+    <a href="/es"><img src="\img\spain.png" alt="{{ tabLang.translation_es }}"></a>
+    </div>
+
+    <h2>{{ tabLang.title_form }}</h2>
+
+    <p class="champ">
+      {{ tabLang.name_from }}<br>
+      <input id="input-name-from" type="text" name="name_from" placeholder="{{ tabLang.placeholder_name }}" required><br>
+    </p>
+    <p class="champ">
+      {{ tabLang.mail_from }}<br>
+      <input id="input-email-from" type="email" name="mail_from" placeholder="{{ tabLang.placeholder_mail }}" required><br>
+    </p>
+    <p class="champ">
+      {{ tabLang.name_to }}<br>
+      <input id="input-name-to" type="text" name="name_to" placeholder="{{ tabLang.placeholder_name }}" required><br>
+    </p>
+    <p class="champ">
+      {{ tabLang.mail_to }}<br>
+      <input id="input-email-to" type="email" name="mail_to" placeholder="{{ tabLang.placeholder_mail }}" required><br>
+    </p>
+
+    <p style="font-weight: bold;color: #5a5a5a;">{{ tabLang.title_load_file }}</p> <br>
+    <div id="drop-zone" class="upload-zone-wait">{{ tabLang.text_drag_and_drop }}</div>
+    <div id="drop-show"></div>
+    <input id="televerser" type="file" name="files[]" multiple>
+    <input  id="submit" class="button-submit" type="submit" name="submit" value="{{ tabLang.button_send }}">
+    <div id="message-transfer">
+    </div>
+
+    <a href="/conditionsUtilisation" id="linkCgu">{{ tabLang.cgu_text }}</a>
+  </form>
+</section>
+<div id="overlay-transfert">
+  <div id="transfert-in-progress">
+    <div id="leave-overlay"> <a href="#" onClick="leaveTransferProgress()"><i class="fas fa-times"></i></a>
+    </div>
+    <div id="transfert-wait">
+      <h3>{{ tabLang.file_transfer }}</h3>
+      <img src="img/loader.svg" class="loader" style="fill-opacity: 0;">
+    </div>
+    <div id="transfert-success">
+      <h3>{{ tabLang.transfer_succeed }}</h3>
+      <i class="far fa-check-circle"></i>
+      <input id="lien-download" type="text" class="form-control input-monospace input-sm" data-autoselect="" value="https://???.com">
+      <a id="link-download" href="">{{ tabLang.zip_download }}</a>
+    </div>
+    <div id="transfert-error">
+      <i class="fas fa-exclamation-triangle"></i>
+      <h3>{{ tabLang.transfer_error }}</h3>
+      <i class="fas fa-exclamation-triangle"></i>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
